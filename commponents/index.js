@@ -1,20 +1,16 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import React, { useState } from 'react';
 //resource, initの引数が二つなくても一つでも多分動く
 const fetcher = (resource, init) =>
   fetch(resource, init).then((res) => res.json());
 
 function ItemList() {
   const router = useRouter();
-  //   const [text, setText] = useState('');
-
-  //   const DeleteHandler = () => {
-  //     setText('')
-  //   }
   // 商品一覧をJSON Serverから取得
-  const { data, error } = useSWR('/api/items', fetcher);
-
+//   const { data, error } = useSWR('/api/items', fetcher);
+   const { data, error } = useSWR('/api/items?deleted=false', fetcher)
   // エラーになった場合は一覧は表示できないのでここで終わり
   if (error) return <div>failed to load</div>;
 
@@ -25,17 +21,26 @@ function ItemList() {
   const da = {};
 
   const deleteUser = (item) => {
+    // fetch(`/api/items/${item.id}`, {
+    //   method: 'DELETE',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    // }).then(() => {
+    //   router.reload;
+    // });
+    const data = {deleted:true}
     fetch(`/api/items/${item.id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    }).then(() => {
-      router.reload;
-    });
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    router.reload()
   };
   return (
-    <table>
+    <table  border="1">
       <thead>
         <tr>
           <th>ID</th>
@@ -50,8 +55,8 @@ function ItemList() {
             <tr key={item.id}>
               <td>
                 {' '}
-                <Link href={`/items/${encodeURIComponent(item.id)}`}>
-                  {item.id}
+                <Link legacyBehavior href={`/items/${encodeURIComponent(item.id)}`} >
+                    <a style={{color: "blue"}}>{item.id}</a>
                 </Link>
               </td>
               <td>{item.name}</td>

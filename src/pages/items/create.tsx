@@ -9,6 +9,7 @@ function Create() {
   const data = {
     name: name,
     description: description,
+    deleted:false
   };
 
   const Handler = (event: any) => {

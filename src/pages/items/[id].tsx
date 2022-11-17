@@ -9,9 +9,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const user = await res.json();
 
   return {
-    props: { user },
+    props: {
+      user
+    },
+    revalidate:5,
   };
-};
+}
 
 export async function getStaticPaths() {
   const res = await fetch('http://localhost:8000/items/');

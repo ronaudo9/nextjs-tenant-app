@@ -1,19 +1,28 @@
 {
   "items": [
     {
-      "name": "商品1",
-      "id": 1,
-      "description": "aa"
-    },
-    {
       "name": "チョコケーキ",
       "description": "チョコたっぷり",
+      "deleted": false,
       "id": 2
     },
     {
       "name": "チーズケーキ",
-      "description": "濃厚",
+      "description": "濃厚です",
+      "deleted": false,
       "id": 3
+    },
+    {
+      "name": "ショートケーキ",
+      "description": "ふわふわです",
+      "deleted": false,
+      "id": 4
+    },
+    {
+      "name": "チョコ",
+      "description": "美味しい",
+      "deleted": true,
+      "id": 5
     }
   ]
 }
