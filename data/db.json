@@ -2,7 +2,18 @@
   "items": [
     {
       "name": "商品1",
-      "id": 1
+      "id": 1,
+      "description": "aa"
+    },
+    {
+      "name": "チョコケーキ",
+      "description": "チョコたっぷり",
+      "id": 2
+    },
+    {
+      "name": "チーズケーキ",
+      "description": "濃厚",
+      "id": 3
     }
   ]
 }
